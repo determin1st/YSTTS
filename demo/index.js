@@ -4,22 +4,26 @@ var sup;
 sup = null;
 document.addEventListener('DOMContentLoaded', function(){
   sup = YSTTS({
+    username: 'testman',
     token: '774532944:AAEoeYADIiKgm1Fad3gpXeBZCwSg2OcuqDY',
     chat_id: '383747467',
-    username: 'testman',
-    storage: window.localStorage,
     onStart: function(){
       this.sendLog('YSTTS demo started');
+      this.active = 1;
     },
     onStop: function(){
-      if (this.error) {
-        console.log(this.error);
-      }
+      console.log('YSTTS demo finished');
     },
-    onError: function(msg){
-      console.log('YSTTS error: ' + msg);
+    onUpdate: function(type){
+      debugger;
+      var d;
+      d = this.data;
+    },
+    onError: function(e){
+      if (this.error) {
+        console.log('YSTTS error: ' + this.error);
+      }
       this.stop();
     }
   });
-  sup.start();
 });
